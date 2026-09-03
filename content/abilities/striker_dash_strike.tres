@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/ability_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "striker_dash_strike"
+display_name = "Dash Strike"
+tags = PackedStringArray("melee", "dash")
+cooldown = 3.0
+key_charge_cost = 0
+is_rewrite = false
+damage = 25
+range = 150.0
+scene_path = ""

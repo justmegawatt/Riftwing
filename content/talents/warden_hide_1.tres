@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "warden_hide_1"
+track = "Hide"
+cost_essence = 15
+prereqs = PackedStringArray()
+modifiers = {"hp_bonus": 20}
+unlock_ability_id = ""
+display_name = "Fortified"
+description = "+20 max HP"

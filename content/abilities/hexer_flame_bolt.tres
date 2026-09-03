@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/ability_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hexer_flame_bolt"
+display_name = "Flame Bolt"
+tags = PackedStringArray("ranged", "fire")
+cooldown = 2.0
+key_charge_cost = 0
+is_rewrite = false
+damage = 20
+range = 400.0
+scene_path = ""

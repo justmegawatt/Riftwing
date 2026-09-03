@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/gate/gate_run.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3"]
+
+[node name="GateRun" type="Node2D"]
+script = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.15, 0.1, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(960, 900)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("3")]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "keywright_seal"
+track = "Keywright"
+cost_essence = 20
+prereqs = PackedStringArray()
+modifiers = {}
+unlock_ability_id = "seal_room"
+display_name = "Seal Room"
+description = "Unlock the ability to seal spawn portals with Key Charges"

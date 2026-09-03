@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hexer_fang_1"
+track = "Fang"
+cost_essence = 15
+prereqs = PackedStringArray()
+modifiers = {"cooldown_reduction": 0.1}
+unlock_ability_id = ""
+display_name = "Rapid Casting"
+description = "-10% ability cooldowns"

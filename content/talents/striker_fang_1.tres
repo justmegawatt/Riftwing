@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "striker_fang_1"
+track = "Fang"
+cost_essence = 15
+prereqs = PackedStringArray()
+modifiers = {"damage_bonus": 0.1}
+unlock_ability_id = ""
+display_name = "Iron Fury"
+description = "+10% damage"
