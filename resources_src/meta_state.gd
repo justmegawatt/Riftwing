@@ -7,6 +7,7 @@ var unlocked_talent_ids: Array[String] = []
 var unlocked_resonance_ids: Array[String] = ["striker", "warden", "hexer"]
 var unlocked_rewrite_verbs: Array[String] = []
 var stolen_laws: Array[String] = []
+var equipped_relic_id: String = ""
 var essence: int = 0
 var fragments: int = 0
 var credits: int = 0
