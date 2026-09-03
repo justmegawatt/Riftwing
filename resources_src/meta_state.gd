@@ -11,3 +11,6 @@ var aether_keys: int = 0
 var canon: int = 0
 var story_flags: Array[String] = []
 var cosmetic_ids: Array[String] = []
+var unlocked_gate_ids: Array[String] = ["fissure_01"]
+var gates_cleared: Dictionary = {}
+var association_standing: int = 0

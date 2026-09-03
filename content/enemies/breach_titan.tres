@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "breach_titan"
+display_name = "Breach Titan"
+hp = 120
+move_speed = 100.0
+telegraph_time = 1.0
+damage = 35
+attack_range = 90.0
+attack_cooldown = 3.5
+scene_path = "res://scenes/actors/enemy.tscn"

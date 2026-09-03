@@ -17,6 +17,9 @@ func save_game() -> void:
 		"canon": App.meta_state.canon,
 		"story_flags": App.meta_state.story_flags,
 		"cosmetic_ids": App.meta_state.cosmetic_ids,
+		"unlocked_gate_ids": App.meta_state.unlocked_gate_ids,
+		"gates_cleared": App.meta_state.gates_cleared,
+		"association_standing": App.meta_state.association_standing,
 	}
 	
 	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -53,5 +56,8 @@ func load_game() -> bool:
 	App.meta_state.canon = save_dict.get("canon", 0)
 	App.meta_state.story_flags = save_dict.get("story_flags", [])
 	App.meta_state.cosmetic_ids = save_dict.get("cosmetic_ids", [])
+	App.meta_state.unlocked_gate_ids = save_dict.get("unlocked_gate_ids", ["fissure_01"])
+	App.meta_state.gates_cleared = save_dict.get("gates_cleared", {})
+	App.meta_state.association_standing = save_dict.get("association_standing", 0)
 	
 	return true

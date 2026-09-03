@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GateTheme" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/gate_theme.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "black_gate_01"
+grade = "Black Gate"
+hue = Color(0.1, 0.1, 0.15, 1)
+room_count = 8
+enemy_ids = PackedStringArray("sovereign_knight", "rift_stalker")
+boss_id = "black_gate_warden"
+loot_table_id = ""
+law_pool_ids = PackedStringArray()

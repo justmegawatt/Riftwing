@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "sovereign_knight"
+display_name = "Sovereign Knight"
+hp = 80
+move_speed = 140.0
+telegraph_time = 0.7
+damage = 30
+attack_range = 80.0
+attack_cooldown = 2.5
+scene_path = "res://scenes/actors/enemy.tscn"
