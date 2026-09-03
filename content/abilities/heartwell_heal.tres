@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/ability_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "heartwell_heal"
+display_name = "Life Pulse"
+tags = PackedStringArray("healing", "support")
+cooldown = 8.0
+key_charge_cost = 0
+is_rewrite = false
+damage = -30
+range = 0.0
+scene_path = ""
