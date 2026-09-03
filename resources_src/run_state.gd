@@ -11,3 +11,5 @@ var run_loot: Array = []
 var active_laws: Array[String] = []
 var rewrite_log: Array[String] = []
 var gate_theme_id: String = ""
+var hazard_flipped: bool = false
+var exit_locked: bool = false

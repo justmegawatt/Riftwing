@@ -77,6 +77,12 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("rewrite") and App.run_state and App.run_state.key_charges > 0:
 		_perform_rewrite()
+	
+	if Input.is_action_just_pressed("ability_2") and App.meta_state and App.meta_state.unlocked_rewrite_verbs.has("flip_hazard"):
+		_perform_flip_hazard()
+	
+	if Input.is_action_just_pressed("ability_3") and App.meta_state and App.meta_state.unlocked_rewrite_verbs.has("steal_law"):
+		_perform_steal_law()
 
 func _start_dash(direction: Vector2) -> void:
 	is_dashing = true
@@ -132,7 +138,7 @@ func _perform_ability() -> void:
 				enemy.take_damage(ability.damage)
 
 func _perform_rewrite() -> void:
-	if not App.run_state:
+	if not App.run_state or App.run_state.key_charges <= 0:
 		return
 	
 	App.run_state.key_charges -= 1
@@ -143,12 +149,63 @@ func _perform_rewrite() -> void:
 	sprite.modulate = Color(1.5, 0.5, 2)
 	await get_tree().create_timer(0.2).timeout
 	if is_instance_valid(self):
-		sprite.modulate = Color.WHITE
+		sprite.modulate = Color.WHITE if App.meta_state.resonance_id not in ["nightthread", "bindscript", "heartwell"] else Color(0.8, 0.6, 1.2)
 	
 	var enemies: Array = get_tree().get_nodes_in_group("enemies")
 	if enemies.size() > 0:
 		var enemy: Node = enemies[0]
 		enemy.queue_free()
+
+func _perform_flip_hazard() -> void:
+	if not App.run_state or App.run_state.key_charges <= 0:
+		return
+	
+	App.run_state.key_charges -= 1
+	App.run_state.rewrite_log.append("flip_hazard")
+	App.run_state.hazard_flipped = true
+	Events.key_charge_spent.emit(1)
+	Events.rewrite_triggered.emit("flip_hazard", null)
+	
+	sprite.modulate = Color(2, 1.5, 0.5)
+	await get_tree().create_timer(0.2).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE if App.meta_state.resonance_id not in ["nightthread", "bindscript", "heartwell"] else Color(0.8, 0.6, 1.2)
+	
+	var enemies: Array = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(15)
+
+func _perform_steal_law() -> void:
+	if not App.run_state or App.run_state.key_charges < 2:
+		return
+	
+	var enemies: Array = get_tree().get_nodes_in_group("enemies")
+	var elite_found: bool = false
+	
+	for enemy in enemies:
+		if enemy.has("enemy_def") and enemy.enemy_def:
+			var def: EnemyDef = enemy.enemy_def
+			if def.hp >= 80:
+				elite_found = true
+				break
+	
+	if not elite_found:
+		return
+	
+	App.run_state.key_charges -= 2
+	App.run_state.rewrite_log.append("steal_law")
+	Events.key_charge_spent.emit(2)
+	Events.rewrite_triggered.emit("steal_law", null)
+	
+	var stolen_law: String = "law_" + str(randi() % 100)
+	if not App.meta_state.stolen_laws.has(stolen_law):
+		App.meta_state.stolen_laws.append(stolen_law)
+	
+	sprite.modulate = Color(0.5, 2, 1.5)
+	await get_tree().create_timer(0.2).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE if App.meta_state.resonance_id not in ["nightthread", "bindscript", "heartwell"] else Color(0.8, 0.6, 1.2)
 
 func take_damage(amount: int) -> void:
 	if is_invulnerable:
