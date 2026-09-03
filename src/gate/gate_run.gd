@@ -152,3 +152,22 @@ func _unlock_next_gate() -> void:
 			var cleared_current: int = App.meta_state.gates_cleared.get(gate_theme.id, 0)
 			if cleared_current >= 2:
 				App.meta_state.unlocked_gate_ids.append(next_gate)
+	
+	_unlock_advanced_resonances()
+
+func _unlock_advanced_resonances() -> void:
+	var total_gates_cleared: int = 0
+	for count in App.meta_state.gates_cleared.values():
+		total_gates_cleared += count
+	
+	if total_gates_cleared >= 5 and not App.meta_state.unlocked_resonance_ids.has("nightthread"):
+		App.meta_state.unlocked_resonance_ids.append("nightthread")
+		Events.resonance_unlocked.emit("nightthread")
+	
+	if total_gates_cleared >= 10 and not App.meta_state.unlocked_resonance_ids.has("bindscript"):
+		App.meta_state.unlocked_resonance_ids.append("bindscript")
+		Events.resonance_unlocked.emit("bindscript")
+	
+	if total_gates_cleared >= 15 and not App.meta_state.unlocked_resonance_ids.has("heartwell"):
+		App.meta_state.unlocked_resonance_ids.append("heartwell")
+		Events.resonance_unlocked.emit("heartwell")

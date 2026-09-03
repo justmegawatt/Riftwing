@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResonanceDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/resonance_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "heartwell"
+display_name = "Heartwell Support"
+role = "Support / sustain"
+starting_ability_ids = PackedStringArray("heartwell_heal")
+talent_graph_id = "heartwell_graph"
+unlocked = false
+description = "Sustain yourself and allies. Forbidden healing in gate combat."

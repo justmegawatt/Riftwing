@@ -10,6 +10,7 @@ func save_game() -> void:
 		"license": App.meta_state.license,
 		"resonance_id": App.meta_state.resonance_id,
 		"unlocked_talent_ids": App.meta_state.unlocked_talent_ids,
+		"unlocked_resonance_ids": App.meta_state.unlocked_resonance_ids,
 		"essence": App.meta_state.essence,
 		"fragments": App.meta_state.fragments,
 		"credits": App.meta_state.credits,
@@ -49,6 +50,7 @@ func load_game() -> bool:
 	App.meta_state.license = save_dict.get("license", "unlisted")
 	App.meta_state.resonance_id = save_dict.get("resonance_id", "")
 	App.meta_state.unlocked_talent_ids = save_dict.get("unlocked_talent_ids", [])
+	App.meta_state.unlocked_resonance_ids = save_dict.get("unlocked_resonance_ids", ["striker", "warden", "hexer"])
 	App.meta_state.essence = save_dict.get("essence", 0)
 	App.meta_state.fragments = save_dict.get("fragments", 0)
 	App.meta_state.credits = save_dict.get("credits", 0)

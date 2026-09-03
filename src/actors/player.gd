@@ -38,9 +38,14 @@ func _update_sprite_for_resonance() -> void:
 			texture_path = "res://assets/art/characters/warden_idle.png"
 		"hexer":
 			texture_path = "res://assets/art/characters/hexer_idle.png"
+		"nightthread", "bindscript", "heartwell":
+			texture_path = "res://assets/art/characters/striker_idle.png"
 	
 	if texture_path != "" and ResourceLoader.exists(texture_path):
 		sprite.texture = load(texture_path)
+		
+		if App.meta_state.resonance_id in ["nightthread", "bindscript", "heartwell"]:
+			sprite.modulate = Color(0.8, 0.6, 1.2)
 
 func _physics_process(delta: float) -> void:
 	if is_dashing:
@@ -111,7 +116,14 @@ func _perform_ability() -> void:
 	sprite.modulate = Color(2, 2, 0.5)
 	await get_tree().create_timer(0.15).timeout
 	if is_instance_valid(self):
-		sprite.modulate = Color.WHITE
+		sprite.modulate = Color.WHITE if App.meta_state.resonance_id not in ["nightthread", "bindscript", "heartwell"] else Color(0.8, 0.6, 1.2)
+	
+	if ability.damage < 0:
+		hp = mini(hp - ability.damage, max_hp)
+		if App.run_state:
+			App.run_state.hp = hp
+		Events.player_healed.emit(-ability.damage)
+		return
 	
 	var enemies: Array = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:

@@ -4,6 +4,7 @@ extends Resource
 var license: String = "unlisted"
 var resonance_id: String = ""
 var unlocked_talent_ids: Array[String] = []
+var unlocked_resonance_ids: Array[String] = ["striker", "warden", "hexer"]
 var essence: int = 0
 var fragments: int = 0
 var credits: int = 0

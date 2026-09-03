@@ -15,6 +15,7 @@ signal key_charge_gained(amount: int)
 
 signal talent_unlocked(talent_id: String)
 signal resonance_selected(resonance_id: String)
+signal resonance_unlocked(resonance_id: String)
 
 signal ability_used(ability_id: String)
 signal rewrite_triggered(verb: String, target: Node)

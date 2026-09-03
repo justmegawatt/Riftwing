@@ -17,12 +17,19 @@ func _populate_talents() -> void:
 	
 	var talent_ids: Array[String] = []
 	
-	if resonance.id == "striker":
-		talent_ids.append("striker_fang_1")
-	elif resonance.id == "warden":
-		talent_ids.append("warden_hide_1")
-	elif resonance.id == "hexer":
-		talent_ids.append("hexer_fang_1")
+	match resonance.id:
+		"striker":
+			talent_ids.append("striker_fang_1")
+		"warden":
+			talent_ids.append("warden_hide_1")
+		"hexer":
+			talent_ids.append("hexer_fang_1")
+		"nightthread":
+			talent_ids.append("nightthread_drift_1")
+		"bindscript":
+			talent_ids.append("bindscript_fang_1")
+		"heartwell":
+			talent_ids.append("heartwell_hide_1")
 	
 	talent_ids.append("keywright_seal")
 	
@@ -44,6 +51,7 @@ func _populate_talents() -> void:
 			status = " (Need %d Essence)" % talent.cost_essence
 		
 		button.text = "%s - %d Essence%s\n%s" % [talent.display_name, talent.cost_essence, status, talent.description]
+		button.theme_override_font_sizes["font_size"] = 14
 		button.disabled = is_unlocked or not can_afford
 		button.pressed.connect(_on_talent_pressed.bind(talent_id))
 		talent_container.add_child(button)
