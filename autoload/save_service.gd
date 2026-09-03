@@ -56,6 +56,7 @@ func load_game() -> bool:
 	App.meta_state.unlocked_resonance_ids = save_dict.get("unlocked_resonance_ids", ["striker", "warden", "hexer"])
 	App.meta_state.unlocked_rewrite_verbs = save_dict.get("unlocked_rewrite_verbs", [])
 	App.meta_state.stolen_laws = save_dict.get("stolen_laws", [])
+	App.meta_state.equipped_relic_id = save_dict.get("equipped_relic_id", "")
 	App.meta_state.essence = save_dict.get("essence", 0)
 	App.meta_state.fragments = save_dict.get("fragments", 0)
 	App.meta_state.credits = save_dict.get("credits", 0)

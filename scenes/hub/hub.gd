@@ -11,6 +11,7 @@ func _ready() -> void:
 	talent_button.pressed.connect(_on_talent_pressed)
 	shop_button.pressed.connect(_on_shop_pressed)
 	codex_button.pressed.connect(_on_codex_pressed)
+	cosmetics_button.pressed.connect(_on_cosmetics_pressed)
 	_update_ui()
 
 func _update_ui() -> void:
@@ -63,6 +64,9 @@ func _on_shop_pressed() -> void:
 
 func _on_codex_pressed() -> void:
 	App.change_scene("res://scenes/ui/gate_codex.tscn")
+
+func _on_cosmetics_pressed() -> void:
+	App.change_scene("res://scenes/ui/cosmetics.tscn")
 
 func _show_dialogue(dialogue_id: String) -> void:
 	var dialogue_scene: PackedScene = load("res://scenes/ui/dialogue.tscn")
