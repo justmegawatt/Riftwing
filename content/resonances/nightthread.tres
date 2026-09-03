@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResonanceDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/resonance_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nightthread"
+display_name = "Nightthread Assassin"
+role = "Mobility / execute"
+starting_ability_ids = PackedStringArray("nightthread_shadow_step")
+talent_graph_id = "nightthread_graph"
+unlocked = false
+description = "Vanish and reappear. Execute wounded targets from the shadows."

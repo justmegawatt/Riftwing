@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResonanceDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/resonance_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "warden"
+display_name = "Aegisthorn Warden"
+role = "Barrier / hold space"
+starting_ability_ids = PackedStringArray("warden_shield_bash")
+talent_graph_id = "warden_graph"
+unlocked = true
+description = "Fortify and endure. Hold the line."

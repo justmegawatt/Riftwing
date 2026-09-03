@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "keywright_steal"
+track = "Keywright"
+cost_essence = 50
+prereqs = PackedStringArray("keywright_reroute")
+modifiers = {}
+unlock_ability_id = "steal_law"
+display_name = "Steal Law"
+description = "Copy a Gate Law from elites into your codex"

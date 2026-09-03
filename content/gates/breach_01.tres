@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GateTheme" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/gate_theme.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "breach_01"
+grade = "Breach"
+hue = Color(0.7, 0.3, 0.5, 1)
+room_count = 4
+enemy_ids = PackedStringArray("void_thrall", "rift_stalker")
+boss_id = "void_brute"
+loot_table_id = ""
+law_pool_ids = PackedStringArray()

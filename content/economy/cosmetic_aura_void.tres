@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="OfferDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/offer_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "aura_void"
+sku = "com.riftwright.aura.void"
+kind = "cosmetic"
+price_tier = 2
+grants = {"cosmetic_id": "aura_void", "type": "aura"}

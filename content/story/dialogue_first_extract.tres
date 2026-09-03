@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueBeat" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/dialogue_beat.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "first_extract"
+speaker = "Association Clerk"
+lines = PackedStringArray("Extraction confirmed. Canon signature detected.", "There's... a street here that wasn't on the map this morning.", "Did you do something in there?")
+requires_flags = PackedStringArray()
+sets_flags = PackedStringArray("canon_noticed")

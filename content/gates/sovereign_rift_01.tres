@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GateTheme" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/gate_theme.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "sovereign_rift_01"
+grade = "Sovereign Rift"
+hue = Color(0.9, 0.7, 0.2, 1)
+room_count = 6
+enemy_ids = PackedStringArray("rift_stalker", "sovereign_knight")
+boss_id = "breach_titan"
+loot_table_id = ""
+law_pool_ids = PackedStringArray()

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueBeat" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/dialogue_beat.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mentor_intro"
+speaker = "Mentor"
+lines = PackedStringArray("You're back. Alive. That's more than most Unlisted can say.", "The Association wants that Key. They'll offer you Bronze rank if you hand it over.", "But I've seen what that Key can do. Your choice.")
+requires_flags = PackedStringArray()
+sets_flags = PackedStringArray("mentor_met")

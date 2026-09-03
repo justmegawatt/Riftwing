@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GateTheme" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/gate_theme.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "fissure_01"
+grade = "Fissure"
+hue = Color(0.5, 0.2, 0.7, 1)
+room_count = 3
+enemy_ids = PackedStringArray("void_thrall")
+boss_id = "void_brute"
+loot_table_id = ""
+law_pool_ids = PackedStringArray()

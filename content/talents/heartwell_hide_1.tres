@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentNode" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/talent_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "heartwell_hide_1"
+track = "Hide"
+cost_essence = 15
+prereqs = PackedStringArray()
+modifiers = {"healing_power": 0.2}
+unlock_ability_id = ""
+display_name = "Enhanced Vitality"
+description = "+20% healing power"

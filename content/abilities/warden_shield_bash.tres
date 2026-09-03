@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/ability_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "warden_shield_bash"
+display_name = "Shield Bash"
+tags = PackedStringArray("melee", "stun")
+cooldown = 4.0
+key_charge_cost = 0
+is_rewrite = false
+damage = 15
+range = 80.0
+scene_path = ""

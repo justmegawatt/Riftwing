@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/ability_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "steal_law"
+display_name = "Steal Law"
+tags = PackedStringArray("rewrite", "keywright")
+cooldown = 20.0
+key_charge_cost = 2
+is_rewrite = true
+damage = 0
+range = 0.0
+scene_path = ""

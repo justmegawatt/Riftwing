@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyDef" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources_src/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "void_brute"
+display_name = "Void Brute"
+hp = 80
+move_speed = 80.0
+telegraph_time = 1.0
+damage = 25
+attack_range = 70.0
+attack_cooldown = 3.0
+scene_path = "res://scenes/actors/enemy.tscn"
