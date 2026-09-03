@@ -127,3 +127,10 @@ text = "Gate Codex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0, 0, 0, 0.5)
+
+[node name="CosmeticsButton" type="Button" parent="MarginContainer/VBoxContainer/HubButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Cosmetics"

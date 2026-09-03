@@ -13,6 +13,7 @@ func save_game() -> void:
 		"unlocked_resonance_ids": App.meta_state.unlocked_resonance_ids,
 		"unlocked_rewrite_verbs": App.meta_state.unlocked_rewrite_verbs,
 		"stolen_laws": App.meta_state.stolen_laws,
+		"equipped_relic_id": App.meta_state.equipped_relic_id,
 		"essence": App.meta_state.essence,
 		"fragments": App.meta_state.fragments,
 		"credits": App.meta_state.credits,

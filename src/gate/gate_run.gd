@@ -45,7 +45,13 @@ func _spawn_enemies() -> void:
 	var max_enemies: int = 3 + current_room
 	enemies_in_room = randi_range(min_enemies, max_enemies)
 	
-	for i in range(enemies_in_room):
+	var spawn_echo: bool = (randf() < 0.15) and current_room >= 2
+	
+	if spawn_echo:
+		enemies_in_room += 1
+		_spawn_echo()
+	
+	for i in range(enemies_in_room - (1 if spawn_echo else 0)):
 		var enemy_scene: PackedScene = load("res://scenes/actors/enemy.tscn")
 		var enemy: CharacterBody2D = enemy_scene.instantiate()
 		
@@ -61,6 +67,25 @@ func _spawn_enemies() -> void:
 			enemy.setup(enemy_def)
 		
 		add_child(enemy)
+
+func _spawn_echo() -> void:
+	var echo_scene: PackedScene = load("res://scenes/actors/echo.tscn")
+	var echo: CharacterBody2D = echo_scene.instantiate()
+	
+	var spawn_pos: Vector2 = Vector2(
+		randf_range(400, 1520),
+		randf_range(200, 880)
+	)
+	echo.global_position = spawn_pos
+	
+	var echo_loadout: EchoLoadout = EchoLoadout.new()
+	echo_loadout.player_name = "Echo_Hunter_%d" % randi()
+	echo_loadout.resonance_id = ["striker", "warden", "hexer"][randi() % 3]
+	echo_loadout.hp = 80 + randi() % 40
+	echo_loadout.standing = App.meta_state.association_standing + randi_range(-50, 50)
+	
+	echo.setup_echo(echo_loadout)
+	add_child(echo)
 
 func _spawn_boss() -> void:
 	enemies_in_room = 1
@@ -101,6 +126,8 @@ func _on_room_cleared() -> void:
 func _clear_enemies() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.queue_free()
+	for echo in get_tree().get_nodes_in_group("echo_enemy"):
+		echo.queue_free()
 
 func _extract() -> void:
 	var base_essence: int = 15

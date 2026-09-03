@@ -5,6 +5,7 @@ extends Control
 @onready var talent_button: Button = %TalentButton
 @onready var shop_button: Button = %ShopButton
 @onready var codex_button: Button = %CodexButton
+@onready var cosmetics_button: Button = %CosmeticsButton
 
 func _ready() -> void:
 	talent_button.pressed.connect(_on_talent_pressed)
