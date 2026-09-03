@@ -17,12 +17,20 @@ func _update_ui() -> void:
 		essence_label.text = "Essence Gained: +20"
 		fragments_label.text = "Fragments Gained: +5"
 		
-		if App.meta_state.canon > 0:
-			canon_label.text = "Canon: %d (Reality remembers your edits)" % App.meta_state.canon
-			message_label.text = "A mentor mentions: 'Strange... there's a street here that wasn't on the map this morning.'"
-		else:
-			canon_label.text = ""
-			message_label.text = "Gate cleared. Association retrieval confirmed."
+	if App.meta_state.canon > 0:
+		canon_label.text = "Canon: %d (Reality remembers your edits)" % App.meta_state.canon
+		message_label.text = "A mentor mentions: 'Strange... there's a street here that wasn't on the map this morning.'"
+		_show_canon_dialogue()
+	else:
+		canon_label.text = ""
+		message_label.text = "Gate cleared. Association retrieval confirmed."
+
+func _show_canon_dialogue() -> void:
+	if not App.meta_state.story_flags.has("canon_noticed"):
+		var dialogue_scene: PackedScene = load("res://scenes/ui/dialogue.tscn")
+		var dialogue: Control = dialogue_scene.instantiate()
+		add_child(dialogue)
+		dialogue.show_dialogue("first_extract")
 
 func _on_return_pressed() -> void:
 	App.change_scene("res://scenes/hub/hub.tscn")

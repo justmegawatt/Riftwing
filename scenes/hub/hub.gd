@@ -22,6 +22,14 @@ func _update_ui() -> void:
 		%CanonLabel.text = "Canon: %d" % App.meta_state.canon
 		
 		_populate_gate_list()
+		_check_story_dialogue()
+
+func _check_story_dialogue() -> void:
+	if not App.meta_state:
+		return
+	
+	if not App.meta_state.story_flags.has("mentor_met"):
+		_show_dialogue("mentor_intro")
 
 func _populate_gate_list() -> void:
 	for child in gate_list_container.get_children():
@@ -54,3 +62,9 @@ func _on_shop_pressed() -> void:
 
 func _on_codex_pressed() -> void:
 	App.change_scene("res://scenes/ui/gate_codex.tscn")
+
+func _show_dialogue(dialogue_id: String) -> void:
+	var dialogue_scene: PackedScene = load("res://scenes/ui/dialogue.tscn")
+	var dialogue: Control = dialogue_scene.instantiate()
+	add_child(dialogue)
+	dialogue.show_dialogue(dialogue_id)
