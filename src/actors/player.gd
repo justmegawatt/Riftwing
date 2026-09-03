@@ -15,7 +15,7 @@ var max_hp: int = 100
 var attack_cooldown: float = 0.0
 var ability_cooldown: float = 0.0
 
-@onready var sprite: ColorRect = $ColorRect
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var hurtbox: Area2D = $Hurtbox
 
@@ -24,6 +24,23 @@ func _ready() -> void:
 		hp = App.run_state.hp
 		max_hp = App.run_state.max_hp
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	_update_sprite_for_resonance()
+
+func _update_sprite_for_resonance() -> void:
+	if not App.meta_state:
+		return
+	
+	var texture_path: String = ""
+	match App.meta_state.resonance_id:
+		"striker":
+			texture_path = "res://assets/art/characters/striker_idle.png"
+		"warden":
+			texture_path = "res://assets/art/characters/warden_idle.png"
+		"hexer":
+			texture_path = "res://assets/art/characters/hexer_idle.png"
+	
+	if texture_path != "" and ResourceLoader.exists(texture_path):
+		sprite.texture = load(texture_path)
 
 func _physics_process(delta: float) -> void:
 	if is_dashing:
@@ -31,8 +48,10 @@ func _physics_process(delta: float) -> void:
 		if dash_timer <= 0.0:
 			is_dashing = false
 			is_invulnerable = false
+			sprite.modulate = Color.WHITE
 		else:
 			velocity = dash_direction * DASH_SPEED
+			sprite.modulate = Color(1, 1, 1, 0.5)
 	else:
 		var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = input_dir * SPEED
@@ -62,6 +81,11 @@ func _start_dash(direction: Vector2) -> void:
 
 func _perform_attack() -> void:
 	attack_cooldown = 0.5
+	sprite.modulate = Color(1.5, 1.5, 1.5)
+	await get_tree().create_timer(0.1).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE
+	
 	var enemies: Array = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
 		if global_position.distance_to(enemy.global_position) < 100.0:
@@ -84,6 +108,11 @@ func _perform_ability() -> void:
 	ability_cooldown = ability.cooldown
 	Events.ability_used.emit(ability_id)
 	
+	sprite.modulate = Color(2, 2, 0.5)
+	await get_tree().create_timer(0.15).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE
+	
 	var enemies: Array = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
 		if global_position.distance_to(enemy.global_position) < ability.range:
@@ -95,8 +124,14 @@ func _perform_rewrite() -> void:
 		return
 	
 	App.run_state.key_charges -= 1
+	App.run_state.rewrite_log.append("seal_room")
 	Events.key_charge_spent.emit(1)
 	Events.rewrite_triggered.emit("seal_room", null)
+	
+	sprite.modulate = Color(1.5, 0.5, 2)
+	await get_tree().create_timer(0.2).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE
 	
 	var enemies: Array = get_tree().get_nodes_in_group("enemies")
 	if enemies.size() > 0:
@@ -112,6 +147,11 @@ func take_damage(amount: int) -> void:
 		App.run_state.hp = hp
 	
 	Events.player_damaged.emit(amount)
+	
+	sprite.modulate = Color(2, 0.5, 0.5)
+	await get_tree().create_timer(0.1).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE
 	
 	if hp <= 0:
 		die()

@@ -7,7 +7,7 @@ var attack_timer: float = 0.0
 var telegraph_timer: float = 0.0
 var is_telegraphing: bool = false
 
-@onready var sprite: ColorRect = $ColorRect
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox: Area2D = $Hitbox
 
 func _ready() -> void:
@@ -17,6 +17,12 @@ func _ready() -> void:
 func setup(def: EnemyDef) -> void:
 	enemy_def = def
 	hp = def.hp
+	
+	if def.id == "void_brute" and ResourceLoader.exists("res://assets/art/enemies/void_brute_boss.png"):
+		sprite.texture = load("res://assets/art/enemies/void_brute_boss.png")
+		sprite.scale = Vector2(1.5, 1.5)
+	elif ResourceLoader.exists("res://assets/art/enemies/void_thrall.png"):
+		sprite.texture = load("res://assets/art/enemies/void_thrall.png")
 
 func _physics_process(delta: float) -> void:
 	if not target or not enemy_def:
@@ -41,11 +47,11 @@ func _physics_process(delta: float) -> void:
 func _start_telegraph() -> void:
 	is_telegraphing = true
 	telegraph_timer = enemy_def.telegraph_time
-	sprite.color = Color.ORANGE
+	sprite.modulate = Color.ORANGE
 
 func _execute_attack() -> void:
 	attack_timer = enemy_def.attack_cooldown
-	sprite.color = Color.RED
+	sprite.modulate = Color(2, 0.5, 0.5)
 	
 	if target and global_position.distance_to(target.global_position) <= enemy_def.attack_range:
 		if target.has_method("take_damage"):
@@ -53,10 +59,15 @@ func _execute_attack() -> void:
 	
 	await get_tree().create_timer(0.2).timeout
 	if is_instance_valid(self):
-		sprite.color = Color.DARK_RED
+		sprite.modulate = Color.WHITE
 
 func take_damage(amount: int) -> void:
 	hp -= amount
+	sprite.modulate = Color(1.5, 1.5, 1.5)
+	await get_tree().create_timer(0.05).timeout
+	if is_instance_valid(self):
+		sprite.modulate = Color.WHITE
+	
 	if hp <= 0:
 		die()
 
